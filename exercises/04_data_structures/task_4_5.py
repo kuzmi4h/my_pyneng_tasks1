@@ -1,3 +1,4 @@
+#!/usr/bin/env python3.9
 # -*- coding: utf-8 -*-
 """
 Задание 4.5
@@ -22,3 +23,16 @@
 
 command1 = "switchport trunk allowed vlan 1,2,3,5,8"
 command2 = "switchport trunk allowed vlan 1,3,8,9"
+command1 = command1.split()
+command2 = command2.split()
+command1 = set(command1[-1])
+command2 = set(command2[-1])
+
+
+print(command1)
+print(command2)
+
+result = command1.intersection(command2)
+
+print(result)
+

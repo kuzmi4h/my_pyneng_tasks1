@@ -50,3 +50,41 @@ bin_ip = "00001010000000010000000111000011"
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+ip_network = input("Введите IP-сеть в формате x.x.x.x/y: ")
+ip, mask = ip_network.split("/")
+octets = ip.split(".")
+octets_bin = bin(int(octets[0]))[2:].zfill(8) + bin(int(octets[1]))[2:].zfill(8) + bin(int(octets[2]))[2:].zfill(8) + bin(int(octets[3]))[2:].zfill(8)
+
+mask = int(mask)
+octets_net = octets_bin[:-(32-mask)] + "0" * (32 - mask)
+dec_octets_net = [
+    int(octets_net[0:8], 2),
+    int(octets_net[8:16], 2),
+    int(octets_net[16:24], 2),
+    int(octets_net[24:32], 2),
+]
+
+bin_mask = "1" * mask + "0" * (32 - mask)
+dec_mask = [
+    int(bin_mask[0:8], 2),
+    int(bin_mask[8:16], 2),
+    int(bin_mask[16:24], 2),
+    int(bin_mask[24:32], 2),
+]
+
+network_template = """
+Network:
+{0:<8}  {1:<8}  {2:<8}  {3:<8}
+{0:08b}  {1:08b}  {2:08b}  {3:08b}
+"""
+
+mask_template = """
+Mask:
+/{0}
+{1:<8}  {2:<8}  {3:<8}  {4:<8}
+{1:08b}  {2:08b}  {3:08b}  {4:08b}
+"""
+
+print(network_template.format(dec_octets_net[0], dec_octets_net[1], dec_octets_net[2],dec_octets_net[3]))
+print(mask_template.format(mask, dec_mask[0], dec_mask[1], dec_mask[2], dec_mask[3]))

@@ -46,6 +46,14 @@ london_co = {
     },
 }
 
-sw = input("Введите имя устройства: ")
-param = input("ввведите имя параметра: ")
-print(london_co[sw][param])
+#sw = input("Введите имя устройства: ")
+#param = input("ввведите имя параметра: ")
+#print(london_co[sw][param])
+
+device_name = input("Введите имя устройства: ")
+param_name = input("Введите имя параметра: ")
+
+device_dict = london_co.get(device_name, "Такого устройства нет в словаре")
+param_value = device_dict.get(param_name, "Такого параметра нет в словаре")
+
+print(param_value)

@@ -13,6 +13,8 @@ VLANа или списка VLANов:
 То есть эту задачу можно решить без использования условия if и циклов for/while.
 """
 
+
+
 access_template = [
     "switchport mode access",
     "switchport access vlan {}",
@@ -26,3 +28,25 @@ trunk_template = [
     "switchport mode trunk",
     "switchport trunk allowed vlan {}",
 ]
+# Запрос у пользователя информации о режиме работы интерфейса
+mode = input("Введите режим работы интерфейса (access/trunk): ")
+
+access_int = 'номер VLAN:'
+trunk_int = 'разрешенные VLANы:'
+interf = {"access": access_int, "trunk": trunk_int}
+inter = "".join(interf[mode])
+# Запрос у пользователя информации о номере интерфейса
+interface = input("Введите имя интерфейса: ")
+
+# Запрос у пользователя информации о номере VLANов
+vlan = input(f"Введите {inter}: ")
+
+# Создание словаря для замены access/trunk на соответствующий шаблон
+mode_dict = {"access": access_template, "trunk": trunk_template}
+
+# Создание шаблона команд для заданного режима
+template = "\n".join(mode_dict[mode])
+
+# Вывод на экран конфигурации интерфейса
+print("\n" + "interface " + interface)
+print(template.format(vlan))

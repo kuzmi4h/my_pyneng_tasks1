@@ -31,31 +31,35 @@ Out[1]: '11111111111111111111111111110000'
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
-ip_network = input("Введите IP-сеть в формате x.x.x.x/y: ")
-ip, mask = ip_network.split("/")
-octets = ip.split(".")
 
-bin_mask = "1" * int(mask) + "0" * (32 - int(mask))
-dec_mask = [
-    int(bin_mask[0:8], 2),
-    int(bin_mask[8:16], 2),
-    int(bin_mask[16:24], 2),
-    int(bin_mask[24:32], 2),
-]
+from re import template
 
-network_template = """
-Network:
-{0:<8}  {1:<8}  {2:<8}  {3:<8}
-{0:08b}  {1:08b}  {2:08b}  {3:08b}
-"""
 
-mask_template = """
-Mask:
-/{0}
-{1:<8}  {2:<8}  {3:<8}  {4:<8}
-{1:08b}  {2:08b}  {3:08b}  {4:08b}
-"""
+ip_net = input("Введите IP-сети в формате: 10.1.1.0/24 ")
+ip,mask = ip_net.split("/")
 
-print(network_template.format(int(octets[0]), int(octets[1]), int(octets[2]), int(octets[3])))
-print(mask_template.format(mask, dec_mask[0], dec_mask[1], dec_mask[2], dec_mask[3]))
+oct1, oct2, oct3, oct4 = ip.split(".")
+oct1, oct2, oct3, oct4 = int(oct1), int(oct2), int(oct3), int(oct4)
+oct12, oct22, oct32, oct42 = bin(int(oct1))[2:], bin(int(oct1))[2:], bin(int(oct1))[2:], bin(int(oct1))[2:] 
+mask2 = "1" * int(mask) + "0" * (32 - int(mask))
+m12 = mask2[:8]
+m22 = mask2[8:16]
+m32 = mask2[16:24]
+m42 = mask2[24:]
+m1 = int(m12,2)
+m2 = int(m22,2)
+m3 = int(m32,2)
+m4 = int(m42,2)
+
+template = ('Network:',
+            '{:<9} {:<9} {:<9} {:<9}',
+            '{:08b}  {:08b}  {:08b}  {:08b}',
+            'Mask:',
+            '/{}',
+            '{:<9} {:<9} {:<9} {:<9}',
+            '{:8}  {:8}  {:8}  {:8}',
+            )
+
+print('\n'.join(template).format(oct1, oct2, oct3, oct4, oct1, oct2, oct3, oct4, mask, m1, m2, m3, m4, m12, m22, m32, m42))
+
 

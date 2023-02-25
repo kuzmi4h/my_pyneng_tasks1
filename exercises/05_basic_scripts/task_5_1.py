@@ -47,8 +47,9 @@ london_co = {
         "routing": True,
     },
 }
-sw = input ("Введите имя устройства: ")
-print(london_co[sw])
-
+#sw = input ("Введите имя устройства: ")
+#print(london_co[sw])
+device_name = input("Введите имя устройства: ")
+print(london_co.get(device_name, "Такого устройства нет в словаре."))
 
 

@@ -51,3 +51,19 @@ london_co = {
         "routing": True,
     },
 }
+
+#switch = input("Введите имя устройства: ")
+#print(f"Введите имя параметра ({list(london_co[switch].keys())}): ", end="")
+#param = input()
+
+#print(london_co[switch][param])
+
+device_name = input("Введите имя устройства: ")
+param = ",".join(london_co[device_name])
+param_name = input(f"Введите имя параметра ({param}): ")
+
+device_dict = london_co.get(device_name, "Такого устройства нет в словаре")
+param_value = device_dict.get(param_name, "Такого параметра нет в словаре")    
+print(param_value)
+
+

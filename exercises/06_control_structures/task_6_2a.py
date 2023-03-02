@@ -18,14 +18,14 @@
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 """
-
+"""
 ip_address = input("Введите IP-адрес в формате 10.0.1.1: ")
 ip_octets = ip_address.split(".")
 
 if all(octet.isdigit() for octet in ip_octets):
    pass 
 else:
-    print('Неправильный IP-адрес')
+    print('неправильный ip-адрес')
     break
 
 first_octet = int(ip_octets[0])
@@ -40,4 +40,25 @@ elif ip_address == "0.0.0.0":
     print("unassigned")
 else:
     print("unused")
+"""
+
+# запрос ввода IP-адреса
+ip_address = input("Введите IP-адрес в формате 10.0.1.1: ")
+
+# проверка корректности адреса
+octets = ip_address.split('.')
+if len(octets) != 4 or not all(octet.isdigit() and 0 <= int(octet) <= 255 for octet in octets):
+    print("Неправильный IP-адрес")
+else:
+    # проверка типа адреса
+    if octets == ['0', '0', '0', '0']:
+        print("unassigned")
+    elif octets == ['255', '255', '255', '255']:
+        print("local broadcast")
+    elif int(octets[0]) >= 1 and int(octets[0]) <= 223:
+        print("unicast")
+    elif int(octets[0]) >= 224 and int(octets[0]) <= 239:
+        print("multicast")
+    else:
+        print("unused")
 

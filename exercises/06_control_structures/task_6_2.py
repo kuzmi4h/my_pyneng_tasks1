@@ -28,7 +28,7 @@ elif (int(octets[0]) and int(octets[1]) and int(octets[2]) and  int(octets[3])) 
 else:
     print('unused')
 '''
-
+"""
 ip_address = input("Введите IP-адрес в формате 10.0.1.1: ")
 ip_octets = ip_address.split(".")
 
@@ -44,3 +44,23 @@ elif ip_address == "0.0.0.0":
     print("unassigned")
 else:
     print("unused")
+"""
+
+# запрос ввода IP-адреса
+ip_address = input("Введите IP-адрес в формате 10.0.1.1: ")
+
+# разбиение IP-адреса на октеты
+octets = ip_address.split('.')
+
+# проверка типа адреса
+if octets == ['0', '0', '0', '0']:
+    print("unassigned")
+elif octets == ['255', '255', '255', '255']:
+    print("local broadcast")
+elif int(octets[0]) >= 1 and int(octets[0]) <= 223:
+    print("unicast")
+elif int(octets[0]) >= 224 and int(octets[0]) <= 239:
+    print("multicast")
+else:
+    print("unused")
+

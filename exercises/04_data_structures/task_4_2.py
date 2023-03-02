@@ -14,7 +14,7 @@
 Это не значит, что задание сделано правильно, просто на данном этапе сложно иначе
 проверять результат.
 """
-
 mac = "AAAA:BBBB:CCCC"
-mac = mac.replace(':', '.')
-print(mac)
+new_mac = mac.replace(":", ".")
+print(new_mac)
+

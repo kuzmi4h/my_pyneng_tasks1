@@ -20,7 +20,7 @@
 Это не значит, что задание сделано правильно, просто на данном этапе сложно иначе
 проверять результат.
 """
-
+"""
 command1 = "switchport trunk allowed vlan 1,2,3,5,8"
 command2 = "switchport trunk allowed vlan 1,3,8,9"
 command1 = command1.split()
@@ -32,5 +32,13 @@ print(command1 - command2)
 
 result = list(command1.intersection(command2).split(','))
 
+print(result)
+"""
+command1 = "switchport trunk allowed vlan 1,2,3,5,8"
+command2 = "switchport trunk allowed vlan 1,3,8,9"
+
+vlans1 = command1.split()[-1].split(",")
+vlans2 = command2.split()[-1].split(",")
+result = sorted(list(set(vlans1) & set(vlans2)))
 print(result)
 

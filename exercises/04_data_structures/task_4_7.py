@@ -15,7 +15,28 @@
 Это не значит, что задание сделано правильно, просто на данном этапе сложно иначе
 проверять результат.
 """
+'''
+mac = "AAAA:BBBB:CCCC"
+binary_mac = ''.join([bin(int(x, 16))[2:].zfill(4) for x in mac.split(':')])
+print(binary_mac)
 
+
+mac = "AAAA:BBBB:CCCC"
+
+binary_mac = ""
+for group in mac.split(":"):
+    # преобразуем каждую группу в число в 16-ричной системе и затем в двоичную строку
+    binary_mac += format(int(group, 16), "08b")
+
+print(binary_mac)
+
+import binascii
+
+mac = "AAAA:BBBB:CCCC"
+bin_mac = bin(int(binascii.hexlify(mac.replace(':', '').encode()), 16))[2:]
+print(bin_mac)
+
+'''
 mac = "AAAA:BBBB:CCCC"
 mac = mac.replace(':','')
 mac = int(mac, 16)

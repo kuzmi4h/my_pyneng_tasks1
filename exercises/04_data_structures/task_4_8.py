@@ -25,18 +25,35 @@
 Это не значит, что задание сделано правильно, просто на данном этапе сложно иначе
 проверять результат.
 """
+"""
+ip = "192.168.3.1"
 
+# Преобразуем IP-адрес в список октетов
+octets = ip.split(".")
+
+# Преобразуем каждый октет в двоичную строку и добавим его в список
+bin_octets = [bin(int(octet))[2:].zfill(8) for octet in octets]
+
+# Выводим столбцами
+print("{:<10}{:<10}{:<10}{:<10}".format(*octets))
+print("{:<10}{:<10}{:<10}{:<10}".format(*bin_octets))
+
+"""
+'''
 ip = "192.168.3.1"
 ip = ip.split('.')
 oct1 = int(ip [0])
 oct2 = int(ip [1])
 oct3 = int(ip [2])
 oct4 = int(ip [3])
-'''oct1b = bin(int(oct1))[2:]
+'''
+'''
+oct1b = bin(int(oct1))[2:]
 oct2b = bin(int(oct2))[2:]
 oct3b = bin(int(oct3))[2:]
 oct4b = bin(int(oct4))[2:]
 '''
+"""
 ip_template = '''
 IP address:
 {0:<10} {1:<10} {2:<10} {3:<10}
@@ -44,3 +61,12 @@ IP address:
 '''
 
 print(ip_template.format(oct1, oct2, oct3, oct4))
+
+"""
+ip = "192.168.3.1"
+octets = ip.split('.')
+binary_octets = [format(int(octet), '08b') for octet in octets]
+
+print('{:<10}{:<10}{:<10}{:<10}'.format(*octets))
+print('{:<10}{:<10}{:<10}{:<10}'.format(*binary_octets))
+

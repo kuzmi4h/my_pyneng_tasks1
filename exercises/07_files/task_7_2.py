@@ -40,3 +40,9 @@ interface Ethernet0/3
 ...
 
 """
+
+import sys 
+
+config = sys.argv[1]
+
+print(config)
